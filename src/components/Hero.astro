@@ -1,0 +1,32 @@
+---
+import { cvLink } from '../data/cv';
+import { profile } from '../data/profile';
+import { pt } from '../i18n/pt';
+
+const cv = cvLink('pt');
+---
+
+<section class="pt-16 pb-8">
+  <h1 class="text-4xl leading-tight font-bold tracking-tight sm:text-5xl">{profile.name.value}</h1>
+  <p class="mt-2 font-mono text-lg text-fg">{profile.headline.value}</p>
+  <p class="mt-1 text-muted">{profile.location.value}</p>
+  <p
+    class="mt-4 inline-block rounded-2xl border border-border bg-surface px-3 py-1 font-mono text-sm"
+  >
+    {profile.pcdBadge.value}
+  </p>
+  <div class="mt-6 flex flex-wrap gap-3">
+    <a
+      href="#projetos"
+      class="rounded-lg border border-accent bg-accent px-5 py-3 font-semibold text-on-accent no-underline transition hover:-translate-y-px"
+    >
+      {pt.hero.viewProjects}
+    </a>
+    <a
+      href={cv.href}
+      class="rounded-lg border border-accent px-5 py-3 font-semibold text-accent no-underline transition hover:-translate-y-px hover:bg-accent/10"
+    >
+      {pt.hero.downloadCv}{cv.suffix}
+    </a>
+  </div>
+</section>
