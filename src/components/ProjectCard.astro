@@ -1,0 +1,51 @@
+---
+import type { Project } from '../content/schema';
+import { pt } from '../i18n/pt';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const ready = project.status === 'pronto';
+---
+
+<article
+  class="mb-4 rounded-xl border border-border bg-surface p-5 transition hover:-translate-y-0.5 hover:border-accent"
+>
+  <div class="flex flex-wrap items-baseline justify-between gap-3">
+    <h3 class="text-lg font-semibold">{project.title}</h3>
+    <span
+      class:list={[
+        'rounded-full border px-2.5 py-0.5 font-mono text-xs',
+        ready ? 'border-accent text-accent' : 'border-border text-muted',
+      ]}>{project.status}</span
+    >
+  </div>
+  <p class="mt-2 text-muted">{project.summary}</p>
+  {
+    project.highlights.length > 0 && (
+      <ul class="mt-2 list-disc pl-5">
+        {project.highlights.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    )
+  }
+  {project.metric && <p class="mt-3 font-mono text-[13px] leading-snug text-accent">{project.metric}</p>}
+  <div class="mt-3 flex flex-wrap items-center justify-between gap-2">
+    <ul class="flex flex-wrap gap-1.5">
+      {
+        project.stack.map((tag) => (
+          <li class="rounded-md border border-border px-2 py-0.5 font-mono text-xs text-muted">
+            {tag}
+          </li>
+        ))
+      }
+    </ul>
+    <div class="flex gap-4 font-mono text-sm">
+      {project.repo && <a href={project.repo}>{pt.projects.repo}</a>}
+      {project.demo && <a href={project.demo}>{pt.projects.demo}</a>}
+    </div>
+  </div>
+</article>

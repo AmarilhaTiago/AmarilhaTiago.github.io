@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import { pt } from '../i18n/pt';
+import ProjectCard from './ProjectCard.astro';
+import SectionTitle from './SectionTitle.astro';
+
+// Collection order is not guaranteed, so sort explicitly.
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="pt-14">
+  <SectionTitle id="projetos" label={pt.sections.projects} />
+  {projects.map((entry) => <ProjectCard project={entry.data} />)}
+</section>

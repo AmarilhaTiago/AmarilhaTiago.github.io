@@ -9,3 +9,4 @@ dist/
 # relatorio de dados pessoais: fica so no workspace privado
 docs/dados-extraidos.md
 .test-dist/
+src/content/projects/pt/zz-test-*

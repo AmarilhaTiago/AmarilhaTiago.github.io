@@ -16,6 +16,10 @@ export const pt = {
     experience: 'experiência',
     links: 'links',
   },
+  projects: {
+    repo: 'repo →',
+    demo: 'demo →',
+  },
   status: {
     ready: 'pronto',
     building: 'em construção',
