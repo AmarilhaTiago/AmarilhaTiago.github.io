@@ -10,7 +10,7 @@ Contrato: `formatPeriod(period, dict) -> string`. Exemplos em PT: `{start:'2026-
 - **AC1:** Dada a seção Sobre, então o texto é exatamente o de `profile.about` (texto revisado da spec §4).
 - **AC2:** Dada a seção Experiência, então há 5 entradas na ordem Bello Card, HaruCode, Mega Júnior, FAPEC, MaisCode, cada uma com empresa, cargo e período formatado; a descrição aparece só no Mega Júnior.
 - **AC3:** Dada a seção Links, então tem GitHub, LinkedIn, e-mail (`mailto:`), WhatsApp (`wa.me`, número visível) e currículo (`cvLink('pt')`).
-- **AC4:** Dado o título de cada seção, então há `id` (`sobre`, `projetos`, `experiencia`, `links`) e a âncora do botão "Ver projetos" resolve.
+- **AC4:** Dado o título de cada seção, então há `id` (`sobre`, `experiencia`, `links`). Desvio do plano: o `id` `projetos` e a âncora do botão "Ver projetos" passam a existir no card #10, que cria a seção.
 - **AC5:** Dado 360 px, então não há scroll horizontal.
 
 Fora do escopo: a seção Projetos (#10) e a versão EN (#12).
