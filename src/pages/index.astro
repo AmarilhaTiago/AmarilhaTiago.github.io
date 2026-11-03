@@ -1,23 +1,5 @@
 ---
-import About from '../components/About.astro';
-import Experience from '../components/Experience.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Links from '../components/Links.astro';
-import Projects from '../components/Projects.astro';
-import Layout from '../layouts/Layout.astro';
-import { seoPt } from '../data/seo';
+import Page from '../components/Page.astro';
 ---
 
-<Layout title={seoPt.title} description={seoPt.description} locale={seoPt.locale}>
-  <Header />
-  <main id="top" class="mx-auto max-w-3xl px-4">
-    <Hero />
-    <About />
-    <Projects />
-    <Experience />
-    <Links />
-  </main>
-  <Footer />
-</Layout>
+<Page lang="pt" />

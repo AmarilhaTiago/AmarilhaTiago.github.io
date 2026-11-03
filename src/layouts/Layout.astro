@@ -2,21 +2,24 @@
 import '@fontsource-variable/inter';
 import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
-import { pt } from '../i18n/pt';
+import { getLocale, type Lang } from '../i18n';
 
 interface Props {
+  lang: Lang;
   title: string;
   description: string;
   locale: string;
 }
 
-const { title, description, locale } = Astro.props;
+const { lang, title, description, locale } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const image = new URL('/og.png', Astro.site);
+const ptUrl = new URL('/', Astro.site);
+const enUrl = new URL('/en/', Astro.site);
 ---
 
 <!doctype html>
-<html lang={pt.lang}>
+<html lang={getLocale(lang).dict.lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,6 +27,9 @@ const image = new URL('/og.png', Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="pt-BR" href={ptUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={ptUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <meta property="og:title" content={title} />

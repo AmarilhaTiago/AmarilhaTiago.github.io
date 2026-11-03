@@ -9,9 +9,20 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://amarilhatiago.github.io',
 
+  // Portuguese at / (no prefix), English at /en/.
+  i18n: {
+    locales: ['pt', 'en'],
+    defaultLocale: 'pt',
+    routing: { prefixDefaultLocale: false },
+  },
+
   vite: {
     plugins: [tailwindcss()]
   },
 
-  integrations: [sitemap()]
+  integrations: [
+    sitemap({
+      i18n: { defaultLocale: 'pt', locales: { pt: 'pt-BR', en: 'en-US' } },
+    }),
+  ]
 });

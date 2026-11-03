@@ -1,12 +1,14 @@
 ---
 import type { Project } from '../content/schema';
-import { pt } from '../i18n/pt';
+import { getLocale, type Lang } from '../i18n';
 
 interface Props {
   project: Project;
+  lang: Lang;
 }
 
-const { project } = Astro.props;
+const { project, lang } = Astro.props;
+const { dict } = getLocale(lang);
 const ready = project.status === 'pronto';
 ---
 
@@ -19,7 +21,7 @@ const ready = project.status === 'pronto';
       class:list={[
         'rounded-full border px-2.5 py-0.5 font-mono text-xs',
         ready ? 'border-accent text-accent' : 'border-border text-muted',
-      ]}>{project.status}</span
+      ]}>{ready ? dict.status.ready : dict.status.building}</span
     >
   </div>
   <p class="mt-2 text-muted">{project.summary}</p>
@@ -44,8 +46,8 @@ const ready = project.status === 'pronto';
       }
     </ul>
     <div class="flex gap-4 font-mono text-sm">
-      {project.repo && <a href={project.repo}>{pt.projects.repo}</a>}
-      {project.demo && <a href={project.demo}>{pt.projects.demo}</a>}
+      {project.repo && <a href={project.repo}>{dict.projects.repo}</a>}
+      {project.demo && <a href={project.demo}>{dict.projects.demo}</a>}
     </div>
   </div>
 </article>

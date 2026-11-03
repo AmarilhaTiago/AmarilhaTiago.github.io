@@ -1,4 +1,5 @@
 // Runs Lighthouse (mobile and desktop) against the built site in dist/ and writes the reports.
+// Pages: the Portuguese home (summary.mobile / summary.desktop) and the English one (summary.en.*).
 // Usage: npm run build && node scripts/lighthouse.mjs [outDir]
 // Needs a Chromium-based browser: set CHROME_PATH or it uses the Edge that ships with Windows.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -13,6 +14,10 @@ const OUT = process.argv[2] ?? 'docs/cards/014-a11y-lighthouse';
 const CHROME = process.env.CHROME_PATH ?? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
 const THRESHOLD = 95;
 const CATEGORIES = ['performance', 'accessibility', 'best-practices', 'seo'];
+const PAGES = [
+  { key: 'pt', path: '/', file: (mode) => `lighthouse-${mode}.json` },
+  { key: 'en', path: '/en/', file: (mode) => `lighthouse-en-${mode}.json` },
+];
 const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.woff2': 'font/woff2', '.pdf': 'application/pdf', '.xml': 'application/xml', '.txt': 'text/plain' };
 
 const server = http
@@ -31,25 +36,29 @@ const server = http
 
 const chrome = await launch({ chromePath: CHROME, chromeFlags: ['--headless=new', '--disable-gpu'] });
 mkdirSync(OUT, { recursive: true });
-const summary = {};
+const summary = { en: {} };
 let failed = false;
 
-for (const mode of ['mobile', 'desktop']) {
-  const result = await lighthouse(
-    'http://localhost:4398/',
-    { port: chrome.port, onlyCategories: CATEGORIES, output: 'json', logLevel: 'error' },
-    mode === 'desktop' ? desktopConfig : undefined,
-  );
-  const { lhr } = result;
-  writeFileSync(join(OUT, `lighthouse-${mode}.json`), JSON.stringify(lhr, null, 2));
-  summary[mode] = Object.fromEntries(CATEGORIES.map((c) => [c, Math.round(lhr.categories[c].score * 100)]));
-  for (const [category, score] of Object.entries(summary[mode])) {
-    if (score < THRESHOLD) failed = true;
-    const bad = lhr.categories[category].auditRefs
-      .map((ref) => lhr.audits[ref.id])
-      .filter((a) => a.score !== null && a.score < 1 && a.scoreDisplayMode !== 'informative')
-      .map((a) => a.id);
-    if (score < 100) console.log(`${mode} ${category}: ${score}  <- ${bad.join(', ')}`);
+for (const page of PAGES) {
+  for (const mode of ['mobile', 'desktop']) {
+    const { lhr } = await lighthouse(
+      `http://localhost:4398${page.path}`,
+      { port: chrome.port, onlyCategories: CATEGORIES, output: 'json', logLevel: 'error' },
+      mode === 'desktop' ? desktopConfig : undefined,
+    );
+    writeFileSync(join(OUT, page.file(mode)), JSON.stringify(lhr, null, 2));
+    const scores = Object.fromEntries(CATEGORIES.map((c) => [c, Math.round(lhr.categories[c].score * 100)]));
+    (page.key === 'pt' ? summary : summary.en)[mode] = scores;
+    for (const [category, score] of Object.entries(scores)) {
+      if (score < THRESHOLD) failed = true;
+      if (score < 100) {
+        const bad = lhr.categories[category].auditRefs
+          .map((ref) => lhr.audits[ref.id])
+          .filter((a) => a.score !== null && a.score < 1 && a.scoreDisplayMode !== 'informative')
+          .map((a) => a.id);
+        console.log(`${page.key} ${mode} ${category}: ${score}  <- ${bad.join(', ')}`);
+      }
+    }
   }
 }
 

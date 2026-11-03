@@ -1,9 +1,14 @@
 ---
 import { cvLink } from '../data/cv';
-import { profile } from '../data/profile';
-import { pt } from '../i18n/pt';
+import { getLocale, type Lang } from '../i18n';
 
-const cv = cvLink('pt');
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { dict, profile } = getLocale(lang);
+const cv = cvLink(lang);
 ---
 
 <section class="pt-16 pb-8">
@@ -17,16 +22,16 @@ const cv = cvLink('pt');
   </p>
   <div class="mt-6 flex flex-wrap gap-3">
     <a
-      href="#projetos"
+      href={`#${dict.anchors.projects}`}
       class="rounded-lg border border-accent bg-accent px-5 py-3 font-semibold text-on-accent no-underline transition hover:-translate-y-px"
     >
-      {pt.hero.viewProjects}
+      {dict.hero.viewProjects}
     </a>
     <a
       href={cv.href}
       class="rounded-lg border border-accent px-5 py-3 font-semibold text-accent no-underline transition hover:-translate-y-px hover:bg-accent/10"
     >
-      {pt.hero.downloadCv}{cv.suffix}
+      {dict.hero.downloadCv}{cv.suffix}
     </a>
   </div>
 </section>

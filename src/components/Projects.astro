@@ -1,14 +1,23 @@
 ---
 import { getCollection } from 'astro:content';
-import { pt } from '../i18n/pt';
+import { getLocale, type Lang } from '../i18n';
 import ProjectCard from './ProjectCard.astro';
 import SectionTitle from './SectionTitle.astro';
 
-// Collection order is not guaranteed, so sort explicitly.
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { dict } = getLocale(lang);
+
+// Entry ids start with the language folder ("pt/...", "en/..."). Collection order is not guaranteed, so sort.
+const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`))).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <section class="pt-14">
-  <SectionTitle id="projetos" label={pt.sections.projects} />
-  {projects.map((entry) => <ProjectCard project={entry.data} />)}
+  <SectionTitle id={dict.anchors.projects} label={dict.sections.projects} />
+  {projects.map((entry) => <ProjectCard project={entry.data} lang={lang} />)}
 </section>

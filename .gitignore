@@ -10,3 +10,4 @@ dist/
 docs/dados-extraidos.md
 .test-dist/
 src/content/projects/pt/zz-test-*
+src/content/projects/en/zz-test-*

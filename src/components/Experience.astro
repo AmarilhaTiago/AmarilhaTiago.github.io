@@ -1,12 +1,17 @@
 ---
 import { formatPeriod } from '../data/format';
-import { profile } from '../data/profile';
-import { pt } from '../i18n/pt';
+import { getLocale, type Lang } from '../i18n';
 import SectionTitle from './SectionTitle.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { dict, profile } = getLocale(Astro.props.lang);
 ---
 
 <section class="pt-14">
-  <SectionTitle id="experiencia" label={pt.sections.experience} />
+  <SectionTitle id={dict.anchors.experience} label={dict.sections.experience} />
   <ol class="ml-1 border-l border-border pl-5">
     {
       profile.experience.map((job) => (
@@ -17,7 +22,7 @@ import SectionTitle from './SectionTitle.astro';
           />
           <p class="font-semibold">{job.company.value}</p>
           <p>{job.role.value}</p>
-          <p class="font-mono text-sm text-muted">{formatPeriod(job.period.value, pt.period)}</p>
+          <p class="font-mono text-sm text-muted">{formatPeriod(job.period.value, dict.period)}</p>
           {job.note && <p class="mt-1 text-sm text-muted">{job.note.value}</p>}
         </li>
       ))

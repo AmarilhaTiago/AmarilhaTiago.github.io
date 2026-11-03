@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
+import { en } from '../src/i18n/en';
 import { pt } from '../src/i18n/pt';
 import { profile } from '../src/data/profile';
+import { profileEn } from '../src/data/profile.en';
 
 const SOURCES = ['curriculo', 'linkedin', 'github', 'spec', 'tiago'];
 
@@ -32,43 +34,62 @@ function strings(node: unknown): string[] {
   return [];
 }
 
-describe('profile data', () => {
+const cases = [
+  { lang: 'pt', data: profile, dict: pt, badge: 'PCD · disponível para vagas exclusivas e afirmativas' },
+  {
+    lang: 'en',
+    data: profileEn,
+    dict: en,
+    badge: 'Person with disability · open to inclusive and PwD-dedicated roles',
+  },
+];
+
+describe.each(cases)('profile data ($lang)', ({ data, dict, badge }) => {
   it('AC1: every factual datum carries a valid source', () => {
-    expect(unsourced(profile)).toEqual([]);
+    expect(unsourced(data)).toEqual([]);
   });
 
   it('AC2: no medical details in profile or dictionary', () => {
     const forbidden = /\bCID\b|G80|diagn[óo]stic/i;
-    const offenders = [...strings(profile), ...strings(pt)].filter((s) => forbidden.test(s));
+    const offenders = [...strings(data), ...strings(dict)].filter((s) => forbidden.test(s));
     expect(offenders).toEqual([]);
   });
 
-  it('the PCD badge has no emoji', () => {
-    expect(profile.pcdBadge.value).toBe('PCD · disponível para vagas exclusivas e afirmativas');
-    expect(profile.pcdBadge.value).not.toMatch(/♿/);
+  it('the PCD badge matches the approved text and has no emoji', () => {
+    expect(data.pcdBadge.value).toBe(badge);
+    expect(data.pcdBadge.value).not.toMatch(/♿/);
   });
 
   it('experience has the 5 approved entries, most recent start first', () => {
-    expect(profile.experience.map((e) => e.company.value)).toEqual([
+    expect(data.experience.map((e) => e.company.value)).toEqual([
       'Bello Card',
       'HaruCode',
       'Mega Júnior',
       'FAPEC',
       'MaisCode',
     ]);
-    const starts = profile.experience.map((e) => e.period.value.start);
+    const starts = data.experience.map((e) => e.period.value.start);
     expect([...starts].sort().reverse()).toEqual(starts);
   });
 
   it('Mega Júnior description is sourced to Tiago, role and dates to LinkedIn', () => {
-    const mega = profile.experience.find((e) => e.company.value === 'Mega Júnior');
+    const mega = data.experience.find((e) => e.company.value === 'Mega Júnior');
     expect(mega?.note?.source).toContain('tiago');
     expect(mega?.role.source).toContain('linkedin');
     expect(mega?.period.source).toContain('linkedin');
   });
 
   it('contact links are built from the approved data', () => {
-    expect(profile.contact.whatsappUrl.value).toBe('https://wa.me/5567996217362');
-    expect(profile.contact.email.value).toBe('amarilhatiago@gmail.com');
+    expect(data.contact.whatsappUrl.value).toBe('https://wa.me/5567996217362');
+    expect(data.contact.email.value).toBe('amarilhatiago@gmail.com');
+  });
+});
+
+describe('both languages', () => {
+  it('state the same facts: same periods and same contacts', () => {
+    expect(profileEn.experience.map((e) => e.period.value)).toEqual(
+      profile.experience.map((e) => e.period.value),
+    );
+    expect(profileEn.contact).toEqual(profile.contact);
   });
 });

@@ -1,10 +1,15 @@
 ---
-import { profile } from '../data/profile';
-import { pt } from '../i18n/pt';
+import { getLocale, type Lang } from '../i18n';
 import SectionTitle from './SectionTitle.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { dict, profile } = getLocale(Astro.props.lang);
 ---
 
 <section class="pt-14">
-  <SectionTitle id="sobre" label={pt.sections.about} />
+  <SectionTitle id={dict.anchors.about} label={dict.sections.about} />
   <p>{profile.about.value}</p>
 </section>

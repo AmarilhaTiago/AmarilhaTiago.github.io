@@ -1,12 +1,23 @@
 ---
-import { pt } from '../i18n/pt';
+import { getLocale, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { dict } = getLocale(lang);
+const selector = [
+  { code: 'pt', href: '/' },
+  { code: 'en', href: '/en/' },
+];
 ---
 
 <a
   href="#top"
   class="sr-only rounded-md bg-accent px-4 py-2 font-semibold text-on-accent no-underline focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-20"
 >
-  {pt.nav.skip}
+  {dict.nav.skip}
 </a>
 <header class="sticky top-0 z-10 border-b border-border bg-bg/90 backdrop-blur">
   <div class="mx-auto flex h-14 max-w-3xl items-center justify-between px-4 font-mono text-sm">
@@ -22,26 +33,29 @@ import { pt } from '../i18n/pt';
         type="button"
         id="copy-link"
         hidden
-        data-copied={pt.nav.copied}
+        data-copied={dict.nav.copied}
         class="cursor-pointer rounded-md border border-border px-2.5 py-1 text-muted hover:border-muted hover:text-fg"
       >
-        {pt.nav.copyLink}
+        {dict.nav.copyLink}
       </button>
-      <nav aria-label={pt.nav.language} class="flex gap-1">
-        <a
-          href="/"
-          aria-current="true"
-          class="rounded-md border border-accent px-2.5 py-1 text-accent no-underline"
-        >
-          pt
-        </a>
-        <!-- The English page arrives in card #12; until then this is not a link. -->
-        <span
-          aria-disabled="true"
-          class="rounded-md border border-border px-2.5 py-1 text-muted opacity-60"
-        >
-          en
-        </span>
+      <nav aria-label={dict.nav.language} class="flex gap-1">
+        {
+          selector.map((item) => (
+            <a
+              href={item.href}
+              hreflang={item.code}
+              aria-current={item.code === lang ? 'true' : undefined}
+              class:list={[
+                'rounded-md border px-2.5 py-1 no-underline',
+                item.code === lang
+                  ? 'border-accent text-accent'
+                  : 'border-border text-muted hover:border-muted hover:text-fg',
+              ]}
+            >
+              {item.code}
+            </a>
+          ))
+        }
       </nav>
     </div>
   </div>
