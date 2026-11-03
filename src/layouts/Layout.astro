@@ -1,5 +1,8 @@
 ---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
+import { pt } from '../i18n/pt';
 
 interface Props {
   title: string;
@@ -9,7 +12,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={pt.lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

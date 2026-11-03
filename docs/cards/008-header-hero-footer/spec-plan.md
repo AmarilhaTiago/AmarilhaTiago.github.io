@@ -13,7 +13,9 @@ Layout base da página única em PT, com a paleta D, fontes mono e sans hospedad
 - **AC6:** Dado o teclado, então todos os elementos interativos têm foco visível.
 
 Casos de borda: sem JavaScript, o botão "copiar link" não pode quebrar a página (progressive enhancement: o resto funciona).
-Fora do escopo: a troca de idioma funcionar (#12, o seletor só aponta para `/en/`), seções abaixo do hero (#9, #10).
+Desvio do plano (registrado na implementação): como `/en/` só existe no card #12, o item `en` do seletor é renderizado sem link (`aria-disabled`) para o site no ar não ter link quebrado; o #12 o transforma em link.
+
+Fora do escopo: a troca de idioma funcionar (#12), seções abaixo do hero (#9, #10).
 
 ## Plano (como)
 1. Instalar as fontes por `@fontsource` (JetBrains Mono e Inter), conferindo na doc/npm os nomes e versões atuais dos pacotes; importar só os pesos usados.
