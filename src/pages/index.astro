@@ -1,7 +1,10 @@
 ---
+import About from '../components/About.astro';
+import Experience from '../components/Experience.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import Links from '../components/Links.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -9,6 +12,9 @@ import Layout from '../layouts/Layout.astro';
   <Header />
   <main id="top" class="mx-auto max-w-3xl px-4">
     <Hero />
+    <About />
+    <Experience />
+    <Links />
   </main>
   <Footer />
 </Layout>

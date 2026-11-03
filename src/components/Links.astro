@@ -1,0 +1,39 @@
+---
+import { cvLink } from '../data/cv';
+import { profile } from '../data/profile';
+import { pt } from '../i18n/pt';
+import SectionTitle from './SectionTitle.astro';
+
+const { contact } = profile;
+const cvPt = cvLink('pt');
+const cvEn = cvLink('en');
+// Display text comes from the data, not from literals in the markup.
+const githubLabel = contact.github.value.replace('https://', '');
+const linkedinLabel = new URL(contact.linkedin.value).pathname.split('/').pop();
+---
+
+<section class="pt-14">
+  <SectionTitle id="links" label={pt.sections.links} />
+  <ul class="grid gap-2 font-mono text-[15px]">
+    <li>
+      <span class="inline-block min-w-[11ch] text-muted">{pt.links.github}</span>
+      <a href={contact.github.value}>{githubLabel}</a>
+    </li>
+    <li>
+      <span class="inline-block min-w-[11ch] text-muted">{pt.links.linkedin}</span>
+      <a href={contact.linkedin.value}>{linkedinLabel}</a>
+    </li>
+    <li>
+      <span class="inline-block min-w-[11ch] text-muted">{pt.links.email}</span>
+      <a href={`mailto:${contact.email.value}`}>{contact.email.value}</a>
+    </li>
+    <li>
+      <span class="inline-block min-w-[11ch] text-muted">{pt.links.whatsapp}</span>
+      <a href={contact.whatsappUrl.value}>{contact.whatsappDisplay.value}</a>
+    </li>
+    <li>
+      <span class="inline-block min-w-[11ch] text-muted">{pt.links.cv}</span>
+      <a href={cvPt.href}>PT</a> · <a href={cvEn.href}>EN{cvEn.suffix}</a>
+    </li>
+  </ul>
+</section>

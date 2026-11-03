@@ -1,0 +1,10 @@
+---
+import { profile } from '../data/profile';
+import { pt } from '../i18n/pt';
+import SectionTitle from './SectionTitle.astro';
+---
+
+<section class="pt-14">
+  <SectionTitle id="sobre" label={pt.sections.about} />
+  <p>{profile.about.value}</p>
+</section>
