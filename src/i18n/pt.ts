@@ -5,6 +5,7 @@ export const pt = {
     copyLink: 'copiar link',
     copied: 'copiado!',
     language: 'Idioma',
+    skip: 'Pular para o conteúdo',
   },
   hero: {
     viewProjects: 'Ver projetos',
