@@ -5,3 +5,6 @@ dist/
 .env.*
 !.env.example
 .DS_Store
+
+# relatorio de dados pessoais: fica so no workspace privado
+docs/dados-extraidos.md
