@@ -7,9 +7,10 @@ import Hero from '../components/Hero.astro';
 import Links from '../components/Links.astro';
 import Projects from '../components/Projects.astro';
 import Layout from '../layouts/Layout.astro';
+import { seoPt } from '../data/seo';
 ---
 
-<Layout title="~/tiago">
+<Layout title={seoPt.title} description={seoPt.description} locale={seoPt.locale}>
   <Header />
   <main id="top" class="mx-auto max-w-3xl px-4">
     <Hero />
