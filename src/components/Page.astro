@@ -1,0 +1,30 @@
+---
+import { getLocale, type Lang } from '../i18n';
+import Layout from '../layouts/Layout.astro';
+import About from './About.astro';
+import Experience from './Experience.astro';
+import Footer from './Footer.astro';
+import Header from './Header.astro';
+import Hero from './Hero.astro';
+import Links from './Links.astro';
+import Projects from './Projects.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { seo } = getLocale(lang);
+---
+
+<Layout lang={lang} title={seo.title} description={seo.description} locale={seo.locale}>
+  <Header lang={lang} />
+  <main id="top" class="mx-auto max-w-3xl px-4">
+    <Hero lang={lang} />
+    <About lang={lang} />
+    <Projects lang={lang} />
+    <Experience lang={lang} />
+    <Links lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

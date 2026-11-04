@@ -1,9 +1,14 @@
 ---
 import { cvLink } from '../data/cv';
-import { profile } from '../data/profile';
-import { pt } from '../i18n/pt';
+import { getLocale, type Lang } from '../i18n';
 import SectionTitle from './SectionTitle.astro';
 
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { dict, profile } = getLocale(lang);
 const { contact } = profile;
 const cvPt = cvLink('pt');
 const cvEn = cvLink('en');
@@ -13,26 +18,26 @@ const linkedinLabel = new URL(contact.linkedin.value).pathname.split('/').pop();
 ---
 
 <section class="pt-14">
-  <SectionTitle id="links" label={pt.sections.links} />
+  <SectionTitle id={dict.anchors.links} label={dict.sections.links} />
   <ul class="grid gap-2 font-mono text-[15px]">
     <li>
-      <span class="inline-block min-w-[11ch] text-muted">{pt.links.github}</span>
+      <span class="inline-block min-w-[11ch] text-muted">{dict.links.github}</span>
       <a href={contact.github.value}>{githubLabel}</a>
     </li>
     <li>
-      <span class="inline-block min-w-[11ch] text-muted">{pt.links.linkedin}</span>
+      <span class="inline-block min-w-[11ch] text-muted">{dict.links.linkedin}</span>
       <a href={contact.linkedin.value}>{linkedinLabel}</a>
     </li>
     <li>
-      <span class="inline-block min-w-[11ch] text-muted">{pt.links.email}</span>
+      <span class="inline-block min-w-[11ch] text-muted">{dict.links.email}</span>
       <a href={`mailto:${contact.email.value}`}>{contact.email.value}</a>
     </li>
     <li>
-      <span class="inline-block min-w-[11ch] text-muted">{pt.links.whatsapp}</span>
+      <span class="inline-block min-w-[11ch] text-muted">{dict.links.whatsapp}</span>
       <a href={contact.whatsappUrl.value}>{contact.whatsappDisplay.value}</a>
     </li>
     <li>
-      <span class="inline-block min-w-[11ch] text-muted">{pt.links.cv}</span>
+      <span class="inline-block min-w-[11ch] text-muted">{dict.links.cv}</span>
       <a href={cvPt.href}>PT</a> · <a href={cvEn.href}>EN{cvEn.suffix}</a>
     </li>
   </ul>

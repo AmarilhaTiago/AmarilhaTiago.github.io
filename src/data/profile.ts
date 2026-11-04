@@ -1,32 +1,12 @@
 /**
- * Single source of factual data for the site. Components read only from here.
- * Every datum is wrapped by `src(value, ...sources)`, so its origin is part of the type.
+ * Portuguese facts for the site. Components read only from here (and from src/data/profile.en.ts for English).
+ * Sources: see src/data/sourced.ts.
  */
+import { src, type Profile } from './sourced';
 
-export type Source = 'curriculo' | 'linkedin' | 'github' | 'spec' | 'tiago';
+export type { Contact, Experience, Period, Profile, Source, Sourced } from './sourced';
 
-export interface Sourced<T> {
-  value: T;
-  source: Source[];
-}
-
-const src = <T>(value: T, ...source: [Source, ...Source[]]): Sourced<T> => ({ value, source });
-
-export interface Period {
-  /** YYYY-MM */
-  start: string;
-  /** YYYY-MM, or null while ongoing */
-  end: string | null;
-}
-
-export interface Experience {
-  company: Sourced<string>;
-  role: Sourced<string>;
-  period: Sourced<Period>;
-  note?: Sourced<string>;
-}
-
-export const profile = {
+export const profile: Profile = {
   name: src('Tiago Amarilha', 'spec'),
   fullName: src('Tiago Amarilha Rodrigues', 'curriculo', 'linkedin'),
   headline: src('Desenvolvedor Full Stack · Tech Lead · IA aplicada', 'spec'),
@@ -76,5 +56,5 @@ export const profile = {
       role: src('Desenvolvedor Web', 'curriculo', 'spec'),
       period: src({ start: '2022-05', end: '2023-04' }, 'curriculo', 'linkedin', 'spec'),
     },
-  ] satisfies Experience[],
+  ],
 };

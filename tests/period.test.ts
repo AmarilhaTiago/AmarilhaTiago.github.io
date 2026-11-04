@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { formatPeriod } from '../src/data/format';
+import { en } from '../src/i18n/en';
 import { pt } from '../src/i18n/pt';
 
-describe('formatPeriod', () => {
+describe('formatPeriod (pt)', () => {
   it('shows "atual" for an ongoing period', () => {
     expect(formatPeriod({ start: '2026-05', end: null }, pt.period)).toBe('mai/2026 – atual');
   });
@@ -22,6 +23,15 @@ describe('formatPeriod', () => {
   it('handles a leading-zero month', () => {
     expect(formatPeriod({ start: '2022-05', end: '2023-04' }, pt.period)).toBe(
       'mai/2022 – abr/2023',
+    );
+  });
+});
+
+describe('formatPeriod (en)', () => {
+  it('uses "Month YYYY" and "present", as in the spec', () => {
+    expect(formatPeriod({ start: '2026-05', end: null }, en.period)).toBe('May 2026 – present');
+    expect(formatPeriod({ start: '2023-08', end: '2026-05' }, en.period)).toBe(
+      'Aug 2023 – May 2026',
     );
   });
 });

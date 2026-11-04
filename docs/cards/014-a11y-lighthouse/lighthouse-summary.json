@@ -1,4 +1,18 @@
 {
+  "en": {
+    "mobile": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "desktop": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    }
+  },
   "mobile": {
     "performance": 100,
     "accessibility": 100,

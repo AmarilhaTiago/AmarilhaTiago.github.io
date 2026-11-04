@@ -11,6 +11,12 @@ export const pt = {
     viewProjects: 'Ver projetos',
     downloadCv: 'Baixar currículo',
   },
+  anchors: {
+    about: 'sobre',
+    projects: 'projetos',
+    experience: 'experiencia',
+    links: 'links',
+  },
   sections: {
     about: 'sobre',
     projects: 'projetos',
@@ -34,7 +40,10 @@ export const pt = {
   },
   period: {
     present: 'atual',
+    sep: '/',
     months: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
   },
   footer: '© 2026 Tiago Amarilha',
 };
+
+export type Dict = typeof pt;
