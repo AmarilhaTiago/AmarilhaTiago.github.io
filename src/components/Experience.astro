@@ -23,6 +23,26 @@ const { dict, profile } = getLocale(Astro.props.lang);
           <p class="font-semibold">{job.company.value}</p>
           <p>{job.role.value}</p>
           <p class="font-mono text-sm text-muted">{formatPeriod(job.period.value, dict.period)}</p>
+          {
+            job.bullets && (
+              <ul class="mt-2 list-disc pl-5 text-sm">
+                {job.bullets.value.map((item) => (
+                  <li class="mt-1">{item}</li>
+                ))}
+              </ul>
+            )
+          }
+          {
+            job.stack && (
+              <ul class="mt-2 flex flex-wrap gap-1.5">
+                {job.stack.value.map((tag) => (
+                  <li class="rounded-md border border-border px-2 py-0.5 font-mono text-xs text-muted">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            )
+          }
           {job.note && <p class="mt-1 text-sm text-muted">{job.note.value}</p>}
         </li>
       ))

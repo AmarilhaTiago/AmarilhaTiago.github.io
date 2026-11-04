@@ -29,7 +29,7 @@ Components read facts only from `profile.ts` and the dictionary, and projects on
 
 ## Results
 
-Measured with Lighthouse 13.6.0 (headless Edge) against the production build served locally, on 2026-11-03. Raw reports are in [`docs/cards/014-a11y-lighthouse/`](docs/cards/014-a11y-lighthouse).
+Measured with Lighthouse 13.6.0 (headless Edge) against the production build served locally, on 2026-11-04. Raw reports are in [`docs/cards/014-a11y-lighthouse/`](docs/cards/014-a11y-lighthouse).
 
 | Mode | Performance | Accessibility | Best Practices | SEO |
 |---|---|---|---|---|
@@ -38,7 +38,7 @@ Measured with Lighthouse 13.6.0 (headless Edge) against the production build ser
 | Mobile (English page) | 100 | 100 | 100 | 100 |
 | Desktop (English page) | 100 | 100 | 100 | 100 |
 
-- 64 automated tests, all passing; they build the site and check the generated HTML, CSS, sitemap and assets.
+- 72 automated tests, all passing; they build the site and check the generated HTML, CSS, sitemap and assets.
 - No horizontal scroll at 360 px, and every interactive element is reachable and visible with the keyboard (checked with a headless browser, see the card verification files).
 
 ## Usage
@@ -73,7 +73,7 @@ Other commands: `npm test`, `npm run build`, `npm run lighthouse` (after a build
 Portfólio pessoal do Tiago Amarilha: página única em português e inglês, tema escuro e estética de terminal, feita com Astro e Tailwind e publicada no GitHub Pages. A seção de projetos é alimentada por arquivos Markdown (adicionar um projeto é criar um arquivo) e há um botão para baixar o currículo.
 
 - **Regra principal:** nenhum dado inventado. Cada dado do site vem de uma fonte registrada no código (currículo, LinkedIn, GitHub ou texto do próprio Tiago).
-- **Resultados medidos (03/11/2026):** Lighthouse 100 em Desempenho, Acessibilidade, Boas Práticas e SEO, no celular e no desktop; 64 testes automatizados passando; sem scroll horizontal em 360 px e navegação completa por teclado.
+- **Resultados medidos (04/11/2026):** Lighthouse 100 em Desempenho, Acessibilidade, Boas Práticas e SEO, no celular e no desktop; 72 testes automatizados passando; sem scroll horizontal em 360 px e navegação completa por teclado.
 - **Como usar:** `npm ci`, `npm run dev` e, para um projeto novo, criar `src/content/projects/pt/<slug>.md`.
 - **Processo:** cards pequenos, cada um com spec, plano e verificação (critério de aceite → evidência) em `docs/cards/`, integrados na `main` no mesmo dia.
 - **Próximos passos:** PDF do currículo em inglês, domínio próprio e Lighthouse no CI.

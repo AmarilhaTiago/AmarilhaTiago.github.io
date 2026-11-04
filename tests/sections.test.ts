@@ -3,6 +3,7 @@ import { cvLink } from '../src/data/cv';
 import { formatPeriod } from '../src/data/format';
 import { profile } from '../src/data/profile';
 import { pt } from '../src/i18n/pt';
+import cv from './fixtures/cv-bullets.json';
 import { buildSite, readHtml } from './helpers/build';
 
 let html = '';
@@ -32,6 +33,14 @@ describe('sections', () => {
     const notes = profile.experience.flatMap((e) => (e.note ? [e.note.value] : []));
     expect(notes).toHaveLength(1);
     expect(html.split(notes[0]).length - 1).toBe(1);
+  });
+
+  it('card #17 AC1/AC2: Experience shows the CV bullets and the stack tags of each job', () => {
+    const section = html.slice(html.indexOf('id="experiencia"'), html.indexOf('id="links"'));
+    for (const company of ['Bello Card', 'HaruCode', 'FAPEC', 'MaisCode'] as const) {
+      cv[company].bullets.forEach((b) => expect(section, b).toContain(b));
+      cv[company].stack.forEach((tag) => expect(section, tag).toContain(`>${tag}<`));
+    }
   });
 
   it('AC3: Links has GitHub, LinkedIn, e-mail, WhatsApp and the CV', () => {

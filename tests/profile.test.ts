@@ -3,6 +3,7 @@ import { en } from '../src/i18n/en';
 import { pt } from '../src/i18n/pt';
 import { profile } from '../src/data/profile';
 import { profileEn } from '../src/data/profile.en';
+import cv from './fixtures/cv-bullets.json';
 
 const SOURCES = ['curriculo', 'linkedin', 'github', 'spec', 'tiago'];
 
@@ -44,7 +45,7 @@ const cases = [
   },
 ];
 
-describe.each(cases)('profile data ($lang)', ({ data, dict, badge }) => {
+describe.each(cases)('profile data ($lang)', ({ lang, data, dict, badge }) => {
   it('AC1: every factual datum carries a valid source', () => {
     expect(unsourced(data)).toEqual([]);
   });
@@ -82,6 +83,26 @@ describe.each(cases)('profile data ($lang)', ({ data, dict, badge }) => {
   it('contact links are built from the approved data', () => {
     expect(data.contact.whatsappUrl.value).toBe('https://wa.me/5567996217362');
     expect(data.contact.email.value).toBe('amarilhatiago@gmail.com');
+  });
+
+  it('AC1-AC3: bullets and stack follow the CV (same text in pt, same count and tags in en)', () => {
+    for (const company of ['Bello Card', 'HaruCode', 'FAPEC', 'MaisCode'] as const) {
+      const job = data.experience.find((e) => e.company.value === company)!;
+      const ref = cv[company];
+      expect(job.bullets?.value, company).toHaveLength(ref.bullets.length);
+      expect(job.stack?.value, company).toEqual(ref.stack);
+      expect(job.bullets?.source).toContain('curriculo');
+      expect(job.stack?.source).toContain('curriculo');
+      if (lang === 'pt') expect(job.bullets?.value, company).toEqual(ref.bullets);
+      else job.bullets!.value.forEach((b, i) => expect(b).not.toBe(ref.bullets[i]));
+    }
+  });
+
+  it('AC4: Mega Júnior keeps only its description, no list and no stack', () => {
+    const mega = data.experience.find((e) => e.company.value === 'Mega Júnior')!;
+    expect(mega.note).toBeDefined();
+    expect(mega.bullets).toBeUndefined();
+    expect(mega.stack).toBeUndefined();
   });
 });
 

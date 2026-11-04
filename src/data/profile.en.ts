@@ -25,11 +25,26 @@ export const profileEn: Profile = {
       company: profile.experience[0].company,
       role: src('Mid-level Full Stack Developer · Tech Lead', 'curriculo', 'spec'),
       period: profile.experience[0].period,
+      // translation of the CV topics
+      bullets: src([
+        "Tech Lead of a 3-person team (a junior developer and an analyst): responsible for the project's technical and structural decisions (database, plain PHP backend and frontend) and for the final call on team definitions.",
+        "Planning with the analyst: requirements gathering, solution proposals, card creation, deadline setting and task delegation; I run the weekly meeting, also acting as Scrum Master.",
+        "Responsible for the team's code review, supported by an LLM review pipeline that I defined.",
+        "AI used as a productivity tool, without replacing the developer's work: support for implementing CI/CD and for documenting the legacy application that existed before I joined.",
+        "Server infrastructure changes within the project's scope, and development of features for the Plus Saúde platform."
+      ], 'curriculo'),
+      stack: profile.experience[0].stack,
     },
     {
       company: profile.experience[1].company,
       role: src('Full Stack Developer', 'curriculo', 'linkedin', 'spec'),
       period: profile.experience[1].period,
+      // translation of the CV topics
+      bullets: src([
+        "Full stack development of real client projects, with Laravel on the backend and React on the frontend, from data modeling to the interface.",
+        "Delivered applications from scratch, turning business rules into clean solutions."
+      ], 'curriculo'),
+      stack: profile.experience[1].stack,
     },
     {
       company: profile.experience[2].company,
@@ -46,11 +61,25 @@ export const profileEn: Profile = {
       company: profile.experience[3].company,
       role: src('Intern → Full Stack Developer', 'curriculo', 'spec'),
       period: profile.experience[3].period,
+      // translation of the CV topics
+      bullets: src([
+        "Developed and maintained about 3 internal and external systems of the largest public-exam board in Mato Grosso do Sul, platforms that have processed over 1 million registrations.",
+        "Built solutions from scratch in PHP and Laravel, adapting the architecture to highly complex, confidential business rules (restricted systems).",
+        "Applied generative AI in development and in Python automation scripts, reducing the team's manual tasks.",
+        "Optimized MySQL database queries and supported the applications' infrastructure."
+      ], 'curriculo'),
+      stack: profile.experience[3].stack,
     },
     {
       company: profile.experience[4].company,
       role: src('Web Developer', 'curriculo', 'spec'),
       period: profile.experience[4].period,
+      // translation of the CV topics
+      bullets: src([
+        "Development and maintenance of web applications in PHP and Laravel, from backend to frontend with JavaScript.",
+        "Implemented new features and fixed bugs in production systems."
+      ], 'curriculo'),
+      stack: profile.experience[4].stack,
     },
   ],
 };

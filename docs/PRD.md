@@ -37,6 +37,7 @@ Astro + Tailwind, JS no cliente só para "copiar link", contraste WCAG AA, foco 
 | P5 | Telefone, e-mail e WhatsApp públicos no site e no repo; `curriculo.pdf` publicado como está. | Decisão do Tiago. O `CLAUDE.md` do workspace foi atualizado. |
 | P7 | Selo PCD sem o emoji ♿: PT `PCD · disponível para vagas exclusivas e afirmativas`; EN `Person with disability · open to inclusive and PwD-dedicated roles`. | Decisão do Tiago em 03/11/2026 (muda a spec §2). Continua sem CID nem detalhe médico. |
 | P8 | Cor de destaque: **vermelhão `#FF5C39`** (opção D do protótipo), sobre fundo `#0a0a0a`. Contraste 6,45:1 no fundo e 6,14:1 no card (AA). | Escolha do Tiago em 03/11/2026: identifica-se com vermelho. Texto do botão principal em `#0a0a0a`. |
+| P9 | Cada cargo mostra os tópicos e a stack do currículo, em PT e EN; o Bello Card entra completo. O Mega Júnior (que não está no currículo) segue só com a descrição aprovada. | Pedido do Tiago em 04/11/2026: "deixe assim como está no currículo". O PDF do currículo, com esses mesmos trechos, já é público no site. |
 | P6 | Card do pr-reviewer: "Evals (16 casos): recall 92–100% · precisão 86–87% com gpt-oss-120b · US$ 0". | Números medidos, com o modelo nomeado. |
 
 ## Métricas de sucesso
