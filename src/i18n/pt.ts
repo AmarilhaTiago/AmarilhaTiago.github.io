@@ -6,6 +6,7 @@ export const pt = {
     copied: 'copiado!',
     language: 'Idioma',
     skip: 'Pular para o conteúdo',
+    newTab: '(abre em nova aba)',
   },
   hero: {
     viewProjects: 'Ver projetos',

@@ -38,7 +38,18 @@ const linkedinLabel = new URL(contact.linkedin.value).pathname.split('/').pop();
     </li>
     <li>
       <span class="inline-block min-w-[11ch] text-muted">{dict.links.cv}</span>
-      <a href={cvPt.href}>PT</a> · <a href={cvEn.href}>EN{cvEn.suffix}</a>
+      <a
+        href={cvPt.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${dict.links.cv} PT ${dict.nav.newTab}`}>PT</a
+      >
+      · <a
+        href={cvEn.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${dict.links.cv} EN${cvEn.suffix} ${dict.nav.newTab}`}>EN{cvEn.suffix}</a
+      >
     </li>
   </ul>
 </section>

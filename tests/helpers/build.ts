@@ -20,3 +20,6 @@ export function readCss(outDir: string): string {
     .map((f) => readFileSync(join(dir, f), 'utf8'))
     .join('\n');
 }
+
+/** Opening tags of every link that points to the published CV. */
+export const cvAnchors = (html: string) => [...html.matchAll(/<a[^>]*href="\/cv\/[^"]*"[^>]*>/g)].map((m) => m[0]);

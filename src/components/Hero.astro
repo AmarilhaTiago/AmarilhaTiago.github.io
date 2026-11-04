@@ -29,6 +29,9 @@ const cv = cvLink(lang);
     </a>
     <a
       href={cv.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${dict.hero.downloadCv}${cv.suffix} ${dict.nav.newTab}`}
       class="rounded-lg border border-accent px-5 py-3 font-semibold text-accent no-underline transition hover:-translate-y-px hover:bg-accent/10"
     >
       {dict.hero.downloadCv}{cv.suffix}

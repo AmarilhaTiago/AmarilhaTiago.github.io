@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import { cvLink } from '../src/data/cv';
 import { profile } from '../src/data/profile';
 import { pt } from '../src/i18n/pt';
-import { buildSite, readCss, readHtml } from './helpers/build';
+import { buildSite, cvAnchors, readCss, readHtml } from './helpers/build';
 
 let html = '';
 let css = '';
@@ -40,6 +40,16 @@ describe('page shell', () => {
   it('AC2: hero buttons point to the projects anchor and the CV file', () => {
     expect(html.match(anchorWithText(pt.hero.viewProjects))?.[1]).toBe('#projetos');
     expect(html.match(anchorWithText(pt.hero.downloadCv))?.[1]).toBe(cvLink('pt').href);
+  });
+
+  it('CV links (card #16): open in a new tab, safely, and announce it', () => {
+    const tags = cvAnchors(html);
+    expect(tags).toHaveLength(3); // hero button + PT and EN in the links section
+    for (const tag of tags) {
+      expect(tag).toContain('target="_blank"');
+      expect(tag).toMatch(/rel="[^"]*noopener[^"]*"/);
+      expect(tag).toContain(pt.nav.newTab);
+    }
   });
 
   it('AC4: motion is switched off for prefers-reduced-motion', () => {
