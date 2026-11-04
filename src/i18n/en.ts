@@ -8,6 +8,7 @@ export const en: Dict = {
     copied: 'copied!',
     language: 'Language',
     skip: 'Skip to content',
+    newTab: '(opens in a new tab)',
   },
   hero: {
     viewProjects: 'View projects',

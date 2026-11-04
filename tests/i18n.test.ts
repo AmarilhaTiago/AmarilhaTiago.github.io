@@ -7,7 +7,7 @@ import { profile } from '../src/data/profile';
 import { profileEn } from '../src/data/profile.en';
 import { seoEn } from '../src/data/seo';
 import { en } from '../src/i18n/en';
-import { buildSite, readHtml } from './helpers/build';
+import { buildSite, cvAnchors, readHtml } from './helpers/build';
 
 const SITE = 'https://amarilhatiago.github.io';
 let out = '';
@@ -54,6 +54,16 @@ describe('English page', () => {
     const cv = cvLink('en');
     expect(enHtml).toContain(`href="${cv.href}"`);
     expect(enHtml).toContain(`${en.hero.downloadCv}${cv.suffix}`);
+  });
+
+  it('CV links (card #16): open in a new tab, safely, and announce it in English', () => {
+    const tags = cvAnchors(enHtml);
+    expect(tags).toHaveLength(3);
+    for (const tag of tags) {
+      expect(tag).toContain('target="_blank"');
+      expect(tag).toMatch(/rel="[^"]*noopener[^"]*"/);
+      expect(tag).toContain(en.nav.newTab);
+    }
   });
 
   it('the Portuguese page does not show English content', () => {
