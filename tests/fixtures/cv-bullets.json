@@ -1,0 +1,36 @@
+{
+  "_note": "Texto dos cargos exatamente como está em docs/fontes/curriculo.pdf (fonte de prioridade 1). Referência dos testes do card #17.",
+  "Bello Card": {
+    "bullets": [
+      "Tech Lead de um time de 3 pessoas, com um desenvolvedor júnior e uma analista: responsável pelas decisões técnicas e estruturais do projeto (banco de dados, backend em PHP puro e frontend) e pela decisão final nas definições do time.",
+      "Planejamento com a analista: levantamento de requisitos, proposta de soluções, criação dos cards, definição de prazos e delegação de tarefas; organizo e conduzo a weekly semanal, acumulando o papel de Scrum Master.",
+      "Responsável pela revisão de código do time, apoiada por uma pipeline de revisão com LLMs que defini.",
+      "Uso de IA como ferramenta de produtividade, sem substituir o trabalho do desenvolvedor: apoio na implementação do CI/CD e documentação da aplicação legada existente antes da minha entrada.",
+      "Alterações de infraestrutura no servidor dentro do escopo do projeto, e desenvolvimento de funcionalidades da plataforma Plus Saúde."
+    ],
+    "stack": ["PHP", "JavaScript", "jQuery", "PostgreSQL", "CI/CD", "Scrum/Kanban"]
+  },
+  "HaruCode": {
+    "bullets": [
+      "Desenvolvimento full stack de projetos reais para clientes, com Laravel no backend e React no frontend, da modelagem de dados à interface.",
+      "Entrega de aplicações do zero, traduzindo regras de negócio em soluções limpas."
+    ],
+    "stack": ["Laravel", "React", "PHP", "JavaScript", "Java", "MySQL"]
+  },
+  "FAPEC": {
+    "bullets": [
+      "Desenvolvi e mantive cerca de 3 sistemas internos e externos da maior banca de concursos do Mato Grosso do Sul, plataformas que já processaram mais de 1 milhão de inscrições.",
+      "Criei soluções do zero em PHP e Laravel, adaptando a arquitetura a regras de negócio de alta complexidade e sigilo (sistemas restritos).",
+      "Apliquei IA generativa no desenvolvimento e em scripts de automação em Python, reduzindo tarefas manuais da equipe.",
+      "Otimizei consultas em bancos de dados MySQL e dei suporte à infraestrutura das aplicações."
+    ],
+    "stack": ["PHP", "Laravel", "Python", "JavaScript", "Java", "MySQL"]
+  },
+  "MaisCode": {
+    "bullets": [
+      "Desenvolvimento e manutenção de aplicações web em PHP e Laravel, do backend ao frontend com JavaScript.",
+      "Implementação de novas funcionalidades e correção de bugs em sistemas em produção."
+    ],
+    "stack": ["PHP", "Laravel", "JavaScript", "MySQL"]
+  }
+}

@@ -21,6 +21,10 @@ export interface Experience {
   role: Sourced<string>;
   period: Sourced<Period>;
   note?: Sourced<string>;
+  /** Topics of the role, as in the CV. */
+  bullets?: Sourced<string[]>;
+  /** Technology tags of the role, as in the CV. */
+  stack?: Sourced<string[]>;
 }
 
 export interface Contact {

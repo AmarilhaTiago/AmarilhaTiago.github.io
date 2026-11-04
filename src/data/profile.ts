@@ -31,11 +31,38 @@ export const profile: Profile = {
       company: src('Bello Card', 'curriculo', 'spec'),
       role: src('Desenvolvedor Full Stack Pleno · Tech Lead', 'curriculo', 'spec'),
       period: src({ start: '2026-05', end: null }, 'curriculo', 'spec', 'linkedin'),
+      bullets: src([
+        "Tech Lead de um time de 3 pessoas, com um desenvolvedor júnior e uma analista: responsável pelas decisões técnicas e estruturais do projeto (banco de dados, backend em PHP puro e frontend) e pela decisão final nas definições do time.",
+        "Planejamento com a analista: levantamento de requisitos, proposta de soluções, criação dos cards, definição de prazos e delegação de tarefas; organizo e conduzo a weekly semanal, acumulando o papel de Scrum Master.",
+        "Responsável pela revisão de código do time, apoiada por uma pipeline de revisão com LLMs que defini.",
+        "Uso de IA como ferramenta de produtividade, sem substituir o trabalho do desenvolvedor: apoio na implementação do CI/CD e documentação da aplicação legada existente antes da minha entrada.",
+        "Alterações de infraestrutura no servidor dentro do escopo do projeto, e desenvolvimento de funcionalidades da plataforma Plus Saúde."
+      ], 'curriculo'),
+      stack: src([
+        "PHP",
+        "JavaScript",
+        "jQuery",
+        "PostgreSQL",
+        "CI/CD",
+        "Scrum/Kanban"
+      ], 'curriculo'),
     },
     {
       company: src('HaruCode', 'curriculo', 'linkedin', 'spec'),
       role: src('Desenvolvedor Full Stack', 'curriculo', 'linkedin', 'spec'),
       period: src({ start: '2025-12', end: '2026-05' }, 'curriculo', 'linkedin', 'spec'),
+      bullets: src([
+        "Desenvolvimento full stack de projetos reais para clientes, com Laravel no backend e React no frontend, da modelagem de dados à interface.",
+        "Entrega de aplicações do zero, traduzindo regras de negócio em soluções limpas."
+      ], 'curriculo'),
+      stack: src([
+        "Laravel",
+        "React",
+        "PHP",
+        "JavaScript",
+        "Java",
+        "MySQL"
+      ], 'curriculo'),
     },
     {
       company: src('Mega Júnior', 'linkedin', 'tiago'),
@@ -50,11 +77,35 @@ export const profile: Profile = {
       company: src('FAPEC', 'curriculo', 'spec'),
       role: src('Estagiário → Desenvolvedor Full Stack', 'curriculo', 'spec'),
       period: src({ start: '2023-08', end: '2026-05' }, 'curriculo', 'spec', 'linkedin'),
+      bullets: src([
+        "Desenvolvi e mantive cerca de 3 sistemas internos e externos da maior banca de concursos do Mato Grosso do Sul, plataformas que já processaram mais de 1 milhão de inscrições.",
+        "Criei soluções do zero em PHP e Laravel, adaptando a arquitetura a regras de negócio de alta complexidade e sigilo (sistemas restritos).",
+        "Apliquei IA generativa no desenvolvimento e em scripts de automação em Python, reduzindo tarefas manuais da equipe.",
+        "Otimizei consultas em bancos de dados MySQL e dei suporte à infraestrutura das aplicações."
+      ], 'curriculo'),
+      stack: src([
+        "PHP",
+        "Laravel",
+        "Python",
+        "JavaScript",
+        "Java",
+        "MySQL"
+      ], 'curriculo'),
     },
     {
       company: src('MaisCode', 'curriculo', 'linkedin', 'spec'),
       role: src('Desenvolvedor Web', 'curriculo', 'spec'),
       period: src({ start: '2022-05', end: '2023-04' }, 'curriculo', 'linkedin', 'spec'),
+      bullets: src([
+        "Desenvolvimento e manutenção de aplicações web em PHP e Laravel, do backend ao frontend com JavaScript.",
+        "Implementação de novas funcionalidades e correção de bugs em sistemas em produção."
+      ], 'curriculo'),
+      stack: src([
+        "PHP",
+        "Laravel",
+        "JavaScript",
+        "MySQL"
+      ], 'curriculo'),
     },
   ],
 };

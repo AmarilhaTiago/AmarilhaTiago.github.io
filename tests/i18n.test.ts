@@ -7,6 +7,7 @@ import { profile } from '../src/data/profile';
 import { profileEn } from '../src/data/profile.en';
 import { seoEn } from '../src/data/seo';
 import { en } from '../src/i18n/en';
+import cv from './fixtures/cv-bullets.json';
 import { buildSite, cvAnchors, readHtml } from './helpers/build';
 
 const SITE = 'https://amarilhatiago.github.io';
@@ -64,6 +65,18 @@ describe('English page', () => {
       expect(tag).toMatch(/rel="[^"]*noopener[^"]*"/);
       expect(tag).toContain(en.nav.newTab);
     }
+  });
+
+  it('card #17 AC3: the English experience shows the translated bullets and the same stack tags', () => {
+    const esc = (s: string) => s.replace(/'/g, '&#39;');
+    const section = enHtml.slice(enHtml.indexOf('id="experience"'), enHtml.indexOf('id="links"'));
+    for (const company of ['Bello Card', 'HaruCode', 'FAPEC', 'MaisCode'] as const) {
+      const job = profileEn.experience.find((e) => e.company.value === company)!;
+      expect(job.bullets!.value).toHaveLength(cv[company].bullets.length);
+      job.bullets!.value.forEach((b) => expect(section, b).toContain(esc(b)));
+      cv[company].stack.forEach((tag) => expect(section, tag).toContain(`>${tag}<`));
+    }
+    expect(section).not.toContain(cv['Bello Card'].bullets[0]);
   });
 
   it('the Portuguese page does not show English content', () => {
